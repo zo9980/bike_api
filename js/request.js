@@ -1,0 +1,50 @@
+/* ====== Common GET Request Function ====== */
+async function getRequest(url) {
+  return await fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  });
+}
+
+async function getProducts() {
+  const url = `http://openapi.seoul.go.kr:8088/67494263627a6f393836507069426a/json/bikeList/1/5/`;
+
+  try {
+    //데이터 요청 및 응답 시도 : 성공일 경우 첫번째 코드 블럭으로 이동
+    const data = await getRequest(url);
+    // const randomData = Math.floor(Math.random() * 4); //0보다 크고 1보다 작은 난수 //math.floor() :소수점 이하를 버림
+    console.log(data);
+    // const movieWrapper = document.querySelector('.recent-img');
+
+    // const movieInfoWrapper = document.querySelector('.recent-info');
+    // const movieTitle = document.querySelector('.recent-title');
+    // const mainMovie = data.data.movies[randomData];
+
+    // const titleEl = `<h3>${mainMovie.title}</h3>`;
+    // const imgEl = `<img src=${mainMovie.large_cover_image}>`;
+    // const infoEl = `
+    //         <h4>Title : <span>${mainMovie.title}</span></h4>
+    //         <p>Genre : <span>${mainMovie.genres.join(', ')}</span></p>
+    //         <p>Rating : <span>${mainMovie.rating}/10</span></p>
+    //         <p>Year : <span>${mainMovie.year}</span></p>
+    //         <a href="detail.html?id=${mainMovie.id}" class="btn">Details</a>`;
+
+    // movieTitle.insertAdjacentHTML('beforeend', titleEl);
+    // movieWrapper.insertAdjacentHTML('beforeend', imgEl);
+    // movieInfoWrapper.insertAdjacentHTML('beforeend', infoEl);
+  } catch (error) {
+    // 실패할 경우 두번째 코드블럭으로 이동
+    console.log('Error :', error);
+  }
+}
+
+getProducts();
+
+// const numbers = document.querySelectorAll('.numbers span');
+// numbers.forEach((number) => {
+//   number.addEventListener('click', function () {
+//     console.log(this.textContent);
+//   });
+// });
